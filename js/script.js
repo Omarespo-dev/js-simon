@@ -66,13 +66,16 @@ const downCount = setInterval(function (){
         // E STAMPI A VIDEO 
         countDown.innerHTML="0"
     }else{
-        // decrementa il valore di second
+        // decrementa il valore di secondi
         secondi = secondi - 1
         
         // E STAMPI A VIDEO 
         countDown.innerHTML=secondi
     }
 }, 1000)
+
+
+
 
 
 

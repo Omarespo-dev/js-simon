@@ -9,9 +9,8 @@ const inputGroup = document.querySelectorAll(".form-control"); // SONO I NUMERI 
 
 
 // Selezioniamo gli output del DOM
-const numberList = document.querySelectorAll(".list");  // DEVONO ANDARE IN OUTPUT NUMERI RANDOM
-
-const countDown = document.getElementById("countdown") //DEVE ANDARE IL COUNTDOWN DA 30 SEC
+const numberList = document.getElementById("numbers-list");  // DEVONO ANDARE IN OUTPUT NUMERI RANDOM
+// const countDown = document.getElementById("countdown") //DEVE ANDARE IL COUNTDOWN DA 30 SEC
 
 const outputP= document.getElementById("message")  //DEVE MANDARE UN MESSAGGIO SE I NUMERI SONO STATI INDOVINATI TIPO 5 SU 5 ALLORA ESCE GRENNE / OPPURE SE I NUMERI SI INDOVINANO AD ESEMPIO 2 SU 5 ESCE ROSSO
 
@@ -30,19 +29,30 @@ function getRandomInt(min, max) {
 }
 
 
+// Assegna un numero casuale a ciascun <li>      (document.createElement)
+const names = ["","","","",""]
+let items = "";
+
+for(let i = 0; i < names.length; i++){
+    items += `<li>${names[i]} ${getRandomInt(1, 50)}</li>`;
+
+}
+numberList.innerHTML= items
+
+
 
 // IN QUESTO CASO HO VERIFICATO CHE NON BASTA SOLO LA FUNZIONE DI MATH RANDOM  (RIVEDERE NON SAPREI COME FARE)
 
-function numeriDiversi (numeridiversi){
-    // dichiaro una variabile dove restituisce un array di numeri
-    let number= []
+// function numeriDiversi (numeridiversi){
+//     // dichiaro una variabile dove restituisce un array di numeri
+//     let number= []
 
-    // Ciclo 
-    for(let i = 0; i < number.length; i++){
+//     // Ciclo 
+//     for(let i = 0; i < number.length; i++){
         
-    }
-    // ??????
-}
+//     }
+//     // ??????
+// }
 
 
 //////////////////////////////////////////////////////////////////////////////////
@@ -52,6 +62,7 @@ function numeriDiversi (numeridiversi){
 
 
 // COME SECONDO STEP FACCIO COUNT DOWN
+const countDown = document.getElementById("countdown") //DEVE ANDARE IL COUNTDOWN DA 30 SEC
 
 // Quindi setto i secondi di partenza
 let secondi= 31;
@@ -73,7 +84,6 @@ const downCount = setInterval(function (){
         countDown.innerHTML=secondi
     }
 }, 1000)
-
 
 
 

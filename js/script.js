@@ -1,24 +1,6 @@
-// Selezioniamo gli input del DOM
 
-const answersForm = document.getElementById("answers-form"); // SAREBBE IL FORM CHE COMPARE E SCOMPARE CON D-NONE
-const inputGroup = document.querySelectorAll(".form-control"); // SONO I NUMERI CHE INSERISCI L'UTENTE NEL FORM UNA VOLTA CHE APPARE
-
-
-
-
-
-
-// Selezioniamo gli output del DOM
-const numberList = document.getElementById("numbers-list");  // DEVONO ANDARE IN OUTPUT NUMERI RANDOM
-// const countDown = document.getElementById("countdown") //DEVE ANDARE IL COUNTDOWN DA 30 SEC
-
-const outputP= document.getElementById("message")  //DEVE MANDARE UN MESSAGGIO SE I NUMERI SONO STATI INDOVINATI TIPO 5 SU 5 ALLORA ESCE GRENNE / OPPURE SE I NUMERI SI INDOVINANO AD ESEMPIO 2 SU 5 ESCE ROSSO
-
-
-
-//////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////
-//////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 // COME PRIMA COSA INIZIEREI A DARE I NUMERI RANDOM A .LIST 
@@ -29,7 +11,9 @@ function getRandomInt(min, max) {
 }
 
 
-// Assegna un numero casuale a ciascun <li>      (document.createElement)
+// Assegna un numero casuale a ciascun <li>      (document.createElement)/pdf
+const numberList = document.getElementById("numbers-list");  // DEVONO ANDARE IN OUTPUT NUMERI RANDOM
+
 const names = ["","","","",""]
 let items = "";
 
@@ -62,7 +46,9 @@ numberList.innerHTML= items
 
 
 // COME SECONDO STEP FACCIO COUNT DOWN
-const countDown = document.getElementById("countdown") //DEVE ANDARE IL COUNTDOWN DA 30 SEC
+const countDown = document.getElementById("countdown"); //DEVE ANDARE IL COUNTDOWN DA 30 SEC
+const instructions = document.getElementById("instructions");  //IL PARAGRAFO CHE CAMBIA TESTO
+const answersForm = document.getElementById("answers-form"); // SAREBBE IL FORM CHE COMPARE E SCOMPARE CON D-NONE
 
 // Quindi setto i secondi di partenza
 let secondi= 31;
@@ -72,18 +58,48 @@ const downCount = setInterval(function (){
     
     // Faccio una condizione dicendo che se i secondi arrivano a 0
     if(secondi === 0){
-        clearInterval(downCount) //Mi fai il clear dell'intervallo
+        clearInterval(downCount); //Mi fai il clear dell'intervallo
 
         // E STAMPI A VIDEO 
-        countDown.innerHTML="0"
+        countDown.innerHTML="0";
+        
+        // SCRIVO IL TESTO APPENA ESCE D-NONE
+        instructions.textContent="Inserisci tutti i numeri che ricordi (l'ordine non è importante)";
+        
+        //  COME TERZO STEP FACCIO SPAWN DEL FORM APPENA IL COUNTDOWN VA A 0 E TOLGO I NUMERI
+        answersForm.classList.remove("d-none");
+        answersForm.classList.add("active");
+        numberList.classList.add("d-none");
+
     }else{
         // decrementa il valore di secondi
-        secondi = secondi - 1
+        secondi = secondi - 1;
         
         // E STAMPI A VIDEO 
-        countDown.innerHTML=secondi
+        countDown.innerHTML=secondi;
+        numberList.classList.remove("d-none");
     }
-}, 1000)
+}, 100);
+
+
+///////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
+
+
+// COME QUARTO STEP FAR INDOVINARE I NUMERI INSERITI DEL UTENTE SIANO QUELLI RANDOM
+const inputGroup = document.getElementById("input-group"); // SONO I NUMERI CHE INSERISCI L'UTENTE NEL FORM UNA VOLTA CHE APPARE
+const outputP1= document.getElementById("message1");  //DEVE MANDARE UN MESSAGGIO SE I NUMERI SONO STATI INDOVINATI TIPO 5 SU 5 ALLORA ESCE GRENNE / OPPURE SE I NUMERI SI INDOVINANO AD ESEMPIO 2 SU 5 ESCE ROSSO
+
+answersForm.addEventListener("submit", function(event){
+    // BLOCCO INVIO DEL FORM
+    event.preventDefault();
+
+    
+})
+
+
+    
 
 
 
